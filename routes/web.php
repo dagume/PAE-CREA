@@ -22,6 +22,9 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('institucion/sede', 'SedeController');
     Route::resource('usuario/supervisor', 'PersonaController');
     Route::resource('usuario/cuenta', 'UserController');
+    Route::resource('formulario', 'FormularioController');
+    Route::resource('visita', 'VisitaController');
+
 });
 
 

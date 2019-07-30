@@ -76,7 +76,7 @@
             <div class="form-group">
                 <label>Colegio</label>
                 <select name="Colegio_idColegio" class="form-control">
-                    <option selected disabled>Seleccione el estado de la sede</option>
+                    <option selected disabled>Seleccione el colegio</option>
                     @foreach ($colegios as $col)
                         <option value="{{$col->idColegio}}">{{$col->nombreColegio}}</option>
                     @endforeach

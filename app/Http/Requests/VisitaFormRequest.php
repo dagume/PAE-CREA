@@ -13,7 +13,7 @@ class VisitaFormRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,10 @@ class VisitaFormRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'fecha'=>'required|date|before:tomorrow',
+            'Persona_idPersona'=> 'required|integer',
+            'Tipo_Formulario_idTipo_Formulario'=> 'required|integer',
+            'Sede_idSede'=> 'required|integer',
         ];
     }
 }

@@ -7,7 +7,7 @@ use paeCrea\Sede;
 use Illuminate\Support\Facades\Redirect;
 use paeCrea\Http\Requests\SedeFormRequest;
 use DB;
- 
+
 class SedeController extends Controller
 {
     public function __construct()
