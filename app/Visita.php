@@ -12,6 +12,7 @@ class Visita extends Model
     public $timestamps = false;
 
     protected $fillable = [
+        'idVisita',
         'fecha',
         'estadoVisita',
         'Persona_idPersona',

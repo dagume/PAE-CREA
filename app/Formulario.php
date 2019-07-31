@@ -12,7 +12,10 @@ class Formulario extends Model
     public $timestamps = false;
 
     protected $fillable = [
-
+        'Visita_idVisita',
+        'Visita_Persona_idPersona',
+        'Visita_Tipo_Formulario_idTipo_Formulario',
+        'Visita_Sede_idSede'
     ];
     protected $guarded = [
 

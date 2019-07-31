@@ -24,6 +24,7 @@ class VisitaFormRequest extends FormRequest
     public function rules()
     {
         return [
+            'idVisita'=>'integer',
             'fecha'=>'required|date|before:tomorrow',
             'Persona_idPersona'=> 'required|integer',
             'Tipo_Formulario_idTipo_Formulario'=> 'required|integer',

@@ -4,10 +4,10 @@ namespace paeCrea\Http\Controllers;
 
 use Illuminate\Http\Request;
 use paeCrea\Visita;
+use paeCrea\Formulario;
 use Illuminate\Support\Facades\Redirect;
 use paeCrea\Http\Requests\VisitaFormRequest;
 use DB;
-
 
 class VisitaController extends Controller
 {
@@ -92,23 +92,32 @@ class VisitaController extends Controller
         ->join('persona as p','c.Persona_idPersona','=','p.idPersona')
         ->select('s.idSede', 'c.nombreColegio', 'nombreSede','p.usuario','p.apellidos')
         ->where('s.estadosede',"=","1")->get();
-        return view("visita.create",["persona"=>$persona, "tipos_formulario"=>$tipos_formulario, "sedes"=>$sedes, "sedesApoyo"=>$sedesApoyo]);
+        return view("visita.create",["persona"=>$persona, "tipos_formulario"=>$tipos_formulario, "sedes"=>$sedes, "sedesApoyo"=>$sedesApoyo,]);
     }
     public function store(VisitaFormRequest $request)
     {
-        $visita = new Visita;
-        $visita->fecha=$request->get('fecha');
-        $visita->estadoVisita = 'cancelada';
-        $visita->Persona_idPersona=$request->get('Persona_idPersona');
-        $visita->Tipo_Formulario_idTipo_Formulario=$request->get('Tipo_Formulario_idTipo_Formulario');
-        $visita->Sede_idSede=$request->get('Sede_idSede');
-        $visita->save();
-        if($request->get('Tipo_Formulario_idTipo_Formulario') == 1){
-            return Redirect::to('formulario');
-        }
-        return Redirect::to('formulario2');
+        DB::transaction(function () use ($request) {
+            $formulario = new Formulario;
+            $visita = new Visita;
+            $visita->fecha = $request->get('fecha');
+            $visita->estadoVisita = 'cancelada';
+            $visita->Persona_idPersona = $request->get('Persona_idPersona');
+            $visita->Tipo_Formulario_idTipo_Formulario = $request->get('Tipo_Formulario_idTipo_Formulario');
+            $visita->Sede_idSede = $request->get('Sede_idSede');
+            $visita->save();
+            $formulario->Visita_idVisita = (int) Visita::max('idVisita');
+            $formulario->Visita_Persona_idPersona = $request->get('Persona_idPersona');
+            $formulario->Visita_Tipo_Formulario_idTipo_Formulario = $request->get('Tipo_Formulario_idTipo_Formulario');
+            $formulario->Visita_Sede_idSede = $request->get('Sede_idSede');
+            $formulario->save();
+    },2);
 
+    if($request->get('Tipo_Formulario_idTipo_Formulario') == 1){
+        return Redirect::to('formulario');
     }
+    return Redirect::to('formulario2');
+    }
+
     public function show($idVisita)
     {
         return view("visita.show", ["visita"=>Visita::findOrFail($idVisita)]);
