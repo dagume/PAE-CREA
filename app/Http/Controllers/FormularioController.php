@@ -4,6 +4,7 @@ namespace paeCrea\Http\Controllers;
 
 use Illuminate\Http\Request;
 use paeCrea\Visita;
+use paeCrea\Formulario;
 use Illuminate\Support\Facades\Redirect;
 
 use DB;
