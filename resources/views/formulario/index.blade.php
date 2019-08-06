@@ -32,37 +32,37 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Supervisor</label>
                                     <input type="text" name="supervisor" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Municipio</label>
                                     <input type="text" name="supervisor" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
-                                    <label >Institucion educativa</label>
+                                    <label >Institucion</label>
                                     <input type="text" name="supervisor" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Sede</label>
                                     <input type="text" name="supervisor" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Nivel de escolaridad</label>
                                     <input type="text" name="supervisor" class="form-control" readonly>
                                 </div>
                             </div>
-                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                            <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Zona</label>
                                     <input type="text" name="supervisor" class="form-control" readonly>
@@ -72,16 +72,17 @@
                             <label >TITULARES DE DERECHO SIMAT</label>
                             </div>
                             <div class="row">
+
                                 <div class="col-xs-3">
                                     <label >4 - 8 años</label>
                                     <input type="text" name="supervisor" class="form-control" >
                                 </div>
-                                <div class="col-xs-4">
-                                    <label >9 - 13 años</label>
+                                <div class="col-xs-3">
+                                    <label >9 -13 años</label>
                                     <input type="text" name="supervisor" class="form-control" >
                                 </div>
-                                <div class="col-xs-5">
-                                    <label >14 - 17</label>
+                                <div class="col-xs-3">
+                                    <label >14-17 años</label>
                                     <input type="text" name="supervisor" class="form-control" >
                                 </div>
                             </div>
@@ -93,12 +94,12 @@
                                     <label >4 - 8 años</label>
                                     <input type="text" name="supervisor" class="form-control" >
                                 </div>
-                                <div class="col-xs-4">
-                                    <label >9 - 13 años</label>
+                                <div class="col-xs-3">
+                                    <label >9 -13 años</label>
                                     <input type="text" name="supervisor" class="form-control" >
                                 </div>
-                                <div class="col-xs-5">
-                                    <label >14 - 17</label>
+                                <div class="col-xs-3">
+                                    <label >14-17 años</label>
                                     <input type="text" name="supervisor" class="form-control" >
                                 </div>
                             </div>
@@ -138,10 +139,11 @@
                     </div>
                 </div>
         <div class="col-md-6">
-            @foreach ($collection as $item)
+            <!-- TODO: hacer index con las consultas que vamos a nesecitas -->
+            @foreach ($criterios as $crit)
                 <div class="box box-danger">
                 <div class="box-header with-border">
-                    <h3 class="box-title">Formulario</h3>
+                    <h3 class="box-title">{{$crit->descripcionCritEva}}</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div>
@@ -168,8 +170,9 @@
             </div>
             @endforeach
         </div>
+
         <div class="col-md-6">
-                @foreach ($collection as $item)
+
                 <div class="box box-danger">
                 <div class="box-header with-border">
                     <h3 class="box-title">Formulario</h3>
@@ -197,7 +200,7 @@
                     </div>
                 </div>
             </div>
-            @endforeach
+
         </div>
     </div>
       <!--Fin-Contenido-->

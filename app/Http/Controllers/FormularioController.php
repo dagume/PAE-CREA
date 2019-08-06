@@ -4,6 +4,7 @@ namespace paeCrea\Http\Controllers;
 
 use Illuminate\Http\Request;
 use paeCrea\Visita;
+use paeCrea\Criterio_evaluacion;
 use paeCrea\Formulario;
 use Illuminate\Support\Facades\Redirect;
 
@@ -17,7 +18,12 @@ class FormularioController extends Controller
     }
     public function index(Request $request)
     {
-        return view('formulario.index');
+        if ($request) {
+            $criterios = Criterio_evaluacion::
+            select('descripcionCritEva', 'estadoCriterio','Tipo_Formulario_idTipo_Formulario')
+            ->where('estadoCriterio','=','1')->get();
+            return view('formulario.index',["criterios"=>$criterios]);
+        }
     }
     public function create()
     {
