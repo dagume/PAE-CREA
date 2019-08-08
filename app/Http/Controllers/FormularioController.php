@@ -9,6 +9,7 @@ use paeCrea\Formulario;
 use Illuminate\Support\Facades\Redirect;
 
 use DB;
+use paeCrea\Item;
 
 class FormularioController extends Controller
 {
@@ -20,9 +21,13 @@ class FormularioController extends Controller
     {
         if ($request) {
             $criterios = Criterio_evaluacion::
-            select('descripcionCritEva', 'estadoCriterio','Tipo_Formulario_idTipo_Formulario')
+            select('idCriterio_Evaluacion', 'descripcionCritEva', 'estadoCriterio','Tipo_Formulario_idTipo_Formulario')
             ->where('estadoCriterio','=','1')->get();
-            return view('formulario.index',["criterios"=>$criterios]);
+
+            $items = Item::
+            select('itemTexto', 'estadoItem','Criterio_Evaluacion_idCriterio_Evaluacion')
+            ->where('estadoItem','=','1')->get();
+            return view('formulario.index',["criterios"=>$criterios, "items"=>$items]);
         }
     }
     public function create()
