@@ -31,7 +31,7 @@ class PersonaController extends Controller
             ->where('estadoPersona','=','1')
             ->where('tipoUsuario','=','supervisor')
             ->orderBy('idPersona','desc')
-            ->paginate(7);
+            ->paginate(50);
             return view('usuario.supervisor.index',["personas"=>$personas,"searchText"=>$query]);
         }
     }

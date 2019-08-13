@@ -21,7 +21,7 @@ class MunicipioController extends Controller
             $municipios = DB::table('municipio')->where('nombreMunicipio','LIKE','%'.$query.'%')
             ->where('estadoMunicipio','=','1')
             ->orderBy('idMunicipio','desc')
-            ->paginate(7);
+            ->paginate(50);
             return view('institucion.municipio.index',["municipios"=>$municipios,"searchText"=>$query]);
         }
     }

@@ -10,6 +10,9 @@
                             </div>
                         </div>
                         <!-- /.box-header -->
+                        {!!Form::open(array('action' => array('FormularioController@store'), 'method'=>'POST', 'autocomplete'=>'off', 'files'=>'true'))!!}
+                        {{Form::token()}}
+                        @foreach ($formulario as $for)
                         <div class="box-body">
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                                 <div class="form-group">
@@ -29,44 +32,44 @@
                                         <div class = "input-group-addon">
                                             <i class = "fa fa-calendar"></i>
                                         </div>
-                                        <input type="date" class="form-control " name="fecha" readonly>
+                                        <input type="text" class="form-control " name="fecha" readonly value="{{$for->fecha}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Supervisor</label>
-                                    <input type="text" name="supervisor" class="form-control" readonly>
+                                    <input type="text" name="supervisor" class="form-control" readonly value="{{$for->nombre}} {{$for->apellidos}}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Municipio</label>
-                                    <input type="text" name="supervisor" class="form-control" readonly>
+                                    <input type="text" name="supervisor" class="form-control" readonly value="{{$for->municipio}}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Institucion</label>
-                                    <input type="text" name="supervisor" class="form-control" readonly>
+                                    <input type="text" name="supervisor" class="form-control" readonly value="{{$for->colegio}}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Sede</label>
-                                    <input type="text" name="supervisor" class="form-control" readonly>
+                                    <input type="text" name="supervisor" class="form-control" readonly value="{{$for->sede}}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Nivel de escolaridad</label>
-                                    <input type="text" name="supervisor" class="form-control" readonly>
+                                    <input type="text" name="supervisor" class="form-control" readonly value="{{$for->nivelEscolaridad}}">
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Zona</label>
-                                    <input type="text" name="supervisor" class="form-control" readonly>
+                                    <input type="text" name="supervisor" class="form-control" readonly value="{{$for->zona}}">
                                 </div>
                             </div>
                             <div>
@@ -150,10 +153,20 @@
                                 </div>
                             </div>
                         </div>
+                        @endforeach
+                        <div class="col-md-12">
+                            <br>
+                            <button type="submit" class="btn btn-block btn-success">Continuar</button>
+
+                        </div>
+                        {!!Form::close()!!}
                     </div>
                 </div>
         @foreach ($criterios as $crit)
+
         <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+                <br>
+                <br>
                 <div class="box box-info">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{$crit->descripcionCritEva}}</h3>
