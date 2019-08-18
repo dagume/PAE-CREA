@@ -113,9 +113,9 @@ class VisitaController extends Controller
     },2);
 
     if($request->get('Tipo_Formulario_idTipo_Formulario') == 1){
-        return Redirect::to('formulario');
+        return Redirect::to('encabezado1');
     }
-    return Redirect::to('formulario2');
+    return Redirect::to('encabezado2');
     }
 
     public function show($idVisita)
@@ -152,9 +152,9 @@ class VisitaController extends Controller
         $visita->Sede_idSede=$request->get('Sede_idSede');
         $visita->update();
         if($request->get('Tipo_Formulario_idTipo_Formulario') == 1){
-            return Redirect::to('visita/formulario1');
+            return Redirect::to('formulario');
         }
-        return Redirect::to('visita/formulario2');
+        return Redirect::to('formulario2');
     }
     public function destroy($idVisita)
     {

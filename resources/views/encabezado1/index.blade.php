@@ -10,19 +10,28 @@
                             </div>
                         </div>
                         <!-- /.box-header -->
+                        {!!Form::open(array('action' => array('Encabezado1Controller@store'), 'method'=>'POST', 'autocomplete'=>'off', 'files'=>'true'))!!}
+                        {{Form::token()}}
                         <div class="row">
                         @foreach ($formulario as $for)
                         <div class="box-body">
                             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
-                                <div  class="form-group">
+                                <div class="form-group">
                                     <label >Visita</label>
-                                    <input type="text" name="visitaNum" class="form-control" readonly>
+                                        <input type="radio" name="Visita"  checked value="1" > No 1
+                                        <input type="radio" name="Visita"  value="2" > No 2
+                                        <input type="radio" name="Visita"  value="3" > No 3
+                                        <input type="radio" name="Visita"  value="4" > No 4
+
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
                                 <div class="form-group">
                                     <label>Tipo de visita</label><br>
-                                    <input type="text" name="tipoVisita" class="form-control" readonly>
+
+                                        <input type="radio" name="tipoVisita"  checked value="asignada"> Asignada
+                                        <input type="radio" name="tipoVisita"  value="apoyo"> Apoyo
+
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-12">
@@ -83,15 +92,15 @@
 
                                                 <div class="col-xs-12">
                                                     <label >4 - 8 años</label>
-                                                    <input type="text" name="simat4" class="form-control" readonly>
+                                                    <input type="text" name="simat4" class="form-control" >
                                                 </div>
                                                 <div class="col-xs-12">
                                                     <label >9 -13 años</label>
-                                                    <input type="text" name="simat9" class="form-control" readonly>
+                                                    <input type="text" name="simat9" class="form-control" >
                                                 </div>
                                                 <div class="col-xs-12">
                                                     <label >14-17 años</label>
-                                                    <input type="text" name="simat14" class="form-control" readonly>
+                                                    <input type="text" name="simat14" class="form-control" >
                                                 </div>
                                             </div>
                             </div>
@@ -102,15 +111,15 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <label >4 - 8 años</label>
-                                                <input type="text" name="atendidos4" class="form-control" readonly>
+                                                <input type="text" name="atendidos4" class="form-control" >
                                             </div>
                                             <div class="col-xs-12">
                                                 <label >9 -13 años</label>
-                                                <input type="text" name="atendidos9" class="form-control" readonly>
+                                                <input type="text" name="atendidos9" class="form-control" >
                                             </div>
                                             <div class="col-xs-12">
                                                 <label >14-17 años</label>
-                                                <input type="text" name="atendidos14" class="form-control" readonly>
+                                                <input type="text" name="atendidos14" class="form-control" >
                                             </div>
                                         </div>
                             </div>
@@ -121,7 +130,16 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label >Concepto emitido</label>
-                                    <input type="text" name="concepVisitaSanitaria" class="form-control" readonly>
+                                        <br>
+                                        <input type="radio" name="Visitasani" checked value="Favorable" > Favorable
+                                        <br>
+                                        <input type="radio" name="Visitasani" value="Favorable con requerimientos" > Favorable con requerimientos
+                                        <br>
+                                        <input type="radio" name="Visitasani" value="Desfavorable" > Desfavorable
+                                        <br>
+                                        <input type="radio" name="Visitasani" value="Sin soporte" > Sin soporte
+                                        <br>
+                                        <input type="radio" name="Visitasani" value="Sin visita" > Sin visita
 
                                 </div>
                             </div>
@@ -132,93 +150,26 @@
                                         <div class = "input-group-addon">
                                             <i class = "fa fa-calendar"></i>
                                         </div>
-                                        <input type="date" class="form-control " name="fechaVisita" readonly>
+                                        <input type="date" class="form-control " name="fechaVisita">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Porcentaje</label>
-                                    <input type="number" name="porcentaje" class="form-control" readonly>
+                                    <input type="number" name="porcentaje" class="form-control">
                                 </div>
                             </div>
                         </div>
                         @endforeach
-                        </div>
-                    </div>
-                </div>
-        @foreach ($criterios as $crit)
-
-        <div id="formulario01" class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
-                <br>
-                <br>
-                <div class="box box-info">
-                <div class="box-header with-border">
-                    <h3 class="box-title">{{$crit->descripcionCritEva}}</h3>
-                    <div class="box-tools pull-right">
-                        <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
-                    </div>
-                </div>
-                <!-- /.box-header -->
-                <div class="box-body">
-                    @foreach ($items as $ite)
-                        @if ($crit->idCriterio_Evaluacion == $ite->Criterio_Evaluacion_idCriterio_Evaluacion )
-                            <label >{{$ite->itemTexto}}</label>
-                            <form action="">
-                                <input type="radio" name="evaluacion" id="evaluacion" checked value="Cumple" > Cumple
-                                <input type="radio" name="evaluacion" id="evaluacion" value="No cumple" > No cumple
-                                <input type="radio" name="evaluacion" id="evaluacion" value="No observado" > No observado
-                                <input type="radio" name="evaluacion" id="evaluacion" value="No aplica" > No aplica
-                            </form>
-                            <div class="col-md-12">
-                                <label >Observaciones</label>
-                                <textarea class="form-control" name="observacion" rows="2" placeholder="Observacion ..." ></textarea>
-                            </div>
+                        <div class="col-md-12">
                             <br>
-                        @endif
-                    @endforeach
-                </div>
-                @if ($crit->idCriterio_Evaluacion == 5)
-                    <div class= "table-responsive">
-                            <table class= "table-bordered table-condensed">
-                                <thead>
-                                    <th>1-75 Raciones</th>
-                                    <th>76-150 Raciones</th>
-                                    <th>151-300 Raciones</th>
-                                    <th>301-500 Raciones</th>
-                                    <th>501-750 Raciones</th>
-                                    <th>751-1000 Raciones</th>
-                                    <th>1001-1500 Raciones</th>
-                                </thead>
-                                <tr>
-                                    <td>1 manipuladora</td>
-                                    <td>2 manipuladoras</td>
-                                    <td>3 manipuladoras</td>
-                                    <td>4 manipuladoras</td>
-                                    <td>5 manipuladoras</td>
-                                    <td>6 manipuladoras</td>
-                                    <td>7 manipuladoras</td>
-                                </tr>
-                                <tr>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="1"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="2"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="3"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="4"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="5"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="6"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="7"></td>
-                                </tr>
-                            </table>
-                       </div>
-                    @endif
-            </div>
-        </div>
-        @endforeach
-        <div class="col-md-12">
-                <br>
-                <button id="enviar" class="btn btn-block btn-success" >Enviar Formulario</button>
+                            <button id="continuar" class="btn btn-block btn-success" >Continuar</button>
 
-            </div>
-    </div>
+                        </div>
+                        </div>
+                        {!!Form::close()!!}
+                    </div>
+                </div>
       <!--Fin-Contenido-->
 @endsection

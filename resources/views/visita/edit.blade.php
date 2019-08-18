@@ -56,8 +56,7 @@
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                     <label>Tipo de Formulario</label>
-                    <select name="Tipo_Formulario_idTipo_Formulario" class="form-control">
-                        <option selected disabled>Seleccione el tipo de formulario</option>
+                    <select name="Tipo_Formulario_idTipo_Formulario" readonly class="form-control">
                         @foreach ($tipos_formulario as $tip)
                             @if ($tip->idTipo_Formulario == $visita->Tipo_Formulario_idTipo_Formulario)
                                 <option value="{{$tip->idTipo_Formulario}}" selected>{{$tip->descripcionFormulario}}</option>

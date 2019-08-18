@@ -23,6 +23,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('usuario/supervisor', 'PersonaController');
     Route::resource('usuario/cuenta', 'UserController');
     Route::resource('formulario', 'FormularioController');
+    Route::resource('encabezado1', 'Encabezado1Controller');
     Route::resource('visita', 'VisitaController');
 
 });
