@@ -1,9 +1,8 @@
 @extends ('layouts.admin')
 @section ('contenido')
-    <div class="row">
             <div class="col-md-12">
-                    <div class="box box-success">
-                        <div class="box-header with-border">
+                    <div class="box box-succes ">
+                <div class="box-header with-border">
                             <h3 class="box-title">Acta de visita programa CREA: Verificacion racion preparada en sitio tipo almuerzo y complemento AM/PM </h3>
                             <div class="box-tools pull-right">
                                 <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
@@ -12,17 +11,18 @@
                         <!-- /.box-header -->
                         <div class="row">
                         @foreach ($formulario as $for)
+                        @foreach ($encabezado as $enc)
                         <div class="box-body">
                             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
                                 <div  class="form-group">
                                     <label >Visita</label>
-                                    <input type="text" name="visitaNum" class="form-control" readonly>
+                                    <input type="text" name="visitaNum" class="form-control" readonly value="{{$enc->visitaNum}}">
                                 </div>
                             </div>
                             <div class="col-lg-4 col-sm-4 col-md-4 col-xs-6">
                                 <div class="form-group">
                                     <label>Tipo de visita</label><br>
-                                    <input type="text" name="tipoVisita" class="form-control" readonly>
+                                    <input type="text" name="tipoVisita" class="form-control" readonly value="{{$enc->tipoVisita}}">
                                 </div>
                             </div>
 
@@ -84,15 +84,15 @@
 
                                                 <div class="col-xs-12">
                                                     <label >4 - 8 años</label>
-                                                    <input type="text" name="simat4" class="form-control" readonly>
+                                                    <input type="text" name="simat4" class="form-control" readonly value="{{$enc->simatCuatro}}">
                                                 </div>
                                                 <div class="col-xs-12">
                                                     <label >9 -13 años</label>
-                                                    <input type="text" name="simat9" class="form-control" readonly>
+                                                    <input type="text" name="simat9" class="form-control" readonly value="{{$enc->simatNueve}}">
                                                 </div>
                                                 <div class="col-xs-12">
                                                     <label >14-17 años</label>
-                                                    <input type="text" name="simat14" class="form-control" readonly>
+                                                    <input type="text" name="simat14" class="form-control" readonly value="{{$enc->simatCatorce}}">
                                                 </div>
                                             </div>
                             </div>
@@ -103,15 +103,15 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <label >4 - 8 años</label>
-                                                <input type="text" name="atendidos4" class="form-control" readonly>
+                                                <input type="text" name="atendidos4" class="form-control" readonly value="{{$enc->atendidosCuatro}}">
                                             </div>
                                             <div class="col-xs-12">
                                                 <label >9 -13 años</label>
-                                                <input type="text" name="atendidos9" class="form-control" readonly>
+                                                <input type="text" name="atendidos9" class="form-control" readonly value="{{$enc->atendidosNueve}}">
                                             </div>
                                             <div class="col-xs-12">
                                                 <label >14-17 años</label>
-                                                <input type="text" name="atendidos14" class="form-control" readonly>
+                                                <input type="text" name="atendidos14" class="form-control" readonly value="{{$enc->atendidosCatorce}}">
                                             </div>
                                         </div>
                             </div>
@@ -122,7 +122,7 @@
                             <div class="col-xs-6">
                                 <div class="form-group">
                                     <label >Concepto emitido</label>
-                                    <input type="text" name="concepVisitaSanitaria" class="form-control" readonly>
+                                    <input type="text" name="concepVisitaSanitaria" class="form-control" readonly value="{{$enc->concepVisitaSanitaria}}">
 
                                 </div>
                             </div>
@@ -133,54 +133,59 @@
                                         <div class = "input-group-addon">
                                             <i class = "fa fa-calendar"></i>
                                         </div>
-                                        <input type="date" class="form-control " name="fechaVisita" readonly>
+                                        <input type="date" class="form-control " name="fechaVisita" readonly value="{{$enc->fechaVisitaSanitaria}}">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Porcentaje</label>
-                                    <input type="number" name="porcentaje" class="form-control" readonly>
+                                    <input type="number" name="porcentaje" class="form-control" readonly value="{{$enc->porcentajeVisitaSanitaria}}">
                                 </div>
                             </div>
                         </div>
                         @endforeach
+                        @endforeach
                         </div>
                     </div>
                 </div>
+    {!!Form::open(array('action' => array('FormularioController@store'), 'method'=>'POST', 'autocomplete'=>'off', 'files'=>'true'))!!}
+    {{Form::token()}}
+    <div class="row">
         @foreach ($criterios as $crit)
-
-        <div id="formulario01" class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
+        <div id="formulario01" class="col-lg-6 col-sm-12 col-md-12 col-xs-12">
                 <br>
                 <br>
-                <div class="box box-info">
+                <div class="box box-default box-solid collapsed-box">
                 <div class="box-header with-border">
                     <h3 class="box-title">{{$crit->descripcionCritEva}}</h3>
                     <div class="box-tools pull-right">
                         <button class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-minus"></i></button>
                     </div>
                 </div>
+
                 <!-- /.box-header -->
                 <div class="box-body">
+
                     @foreach ($items as $ite)
                         @if ($crit->idCriterio_Evaluacion == $ite->Criterio_Evaluacion_idCriterio_Evaluacion )
                             <label >{{$ite->itemTexto}}</label>
-                            <form action="">
-                                <input type="radio" name="evaluacion" id="evaluacion" checked value="Cumple" > Cumple
-                                <input type="radio" name="evaluacion" id="evaluacion" value="No cumple" > No cumple
-                                <input type="radio" name="evaluacion" id="evaluacion" value="No observado" > No observado
-                                <input type="radio" name="evaluacion" id="evaluacion" value="No aplica" > No aplica
-                            </form>
+                                <input type="radio" name="evaluacion[{{$ite->idItem}}]" id="evaluacion" checked value="Cumple" > Cumple
+                                <input type="radio" name="evaluacion[{{$ite->idItem}}]" id="evaluacion" value="No cumple" > No cumple
+                                <input type="radio" name="evaluacion[{{$ite->idItem}}]" id="evaluacion" value="No observado" > No observado
+                                <input type="radio" name="evaluacion[{{$ite->idItem}}]" id="evaluacion" value="No aplica" > No aplica
                             <div class="col-md-12">
                                 <label >Observaciones</label>
-                                <textarea class="form-control" name="observacion" rows="2" placeholder="Observacion ..." ></textarea>
+                                <textarea class="form-control" name="observacion[{{$ite->idItem}}]" id="observacion" rows="2" placeholder="Observacion ..." ></textarea>
                             </div>
+
                             <br>
                         @endif
                     @endforeach
-                </div>
-                @if ($crit->idCriterio_Evaluacion == 5)
-                    <div class= "table-responsive">
+                    @if ($crit->idCriterio_Evaluacion == 5)
+
+                            <div class= "table-responsive box">
+                                    <br>
                             <table class= "table-bordered table-condensed">
                                 <thead>
                                     <th>1-75 Raciones</th>
@@ -202,24 +207,31 @@
                                 </tr>
                                 <tr>
                                     <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="1"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="2"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="3"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="4"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="5"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="6"></td>
-                                    <td><input type="radio" name="manipuladoras" id="manipuladoras" checked value="7"></td>
+                                    <td><input type="radio" name="manipuladoras" id="manipuladoras"  value="2"></td>
+                                    <td><input type="radio" name="manipuladoras" id="manipuladoras"  value="3"></td>
+                                    <td><input type="radio" name="manipuladoras" id="manipuladoras"  value="4"></td>
+                                    <td><input type="radio" name="manipuladoras" id="manipuladoras"  value="5"></td>
+                                    <td><input type="radio" name="manipuladoras" id="manipuladoras"  value="6"></td>
+                                    <td><input type="radio" name="manipuladoras" id="manipuladoras"  value="7"></td>
                                 </tr>
                             </table>
+
                        </div>
                     @endif
+                    @if ($crit->idCriterio_Evaluacion == 13)
+                        <div class="col-md-12">
+                            <br>
+                            <div class="form-group">
+                            <button type="submit"  class="btn btn-block btn-success">Enviar formulario</button>
+                        </div>
+                    </div>
+                    @endif
+                </div>
             </div>
         </div>
         @endforeach
-        <div class="col-md-12">
-                <br>
-                <button id="enviar" class="btn btn-block btn-success" >Enviar Formulario</button>
 
-            </div>
     </div>
+    {!!Form::close()!!}
       <!--Fin-Contenido-->
 @endsection

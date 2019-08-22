@@ -55,7 +55,7 @@ class Encabezado1Controller extends Controller
             select('idCriterio_Evaluacion', 'descripcionCritEva', 'estadoCriterio','Tipo_Formulario_idTipo_Formulario')
             ->where('estadoCriterio','=','1')->get();
             $items = Item::
-            select('itemTexto', 'estadoItem','Criterio_Evaluacion_idCriterio_Evaluacion')
+            select('idItem','itemTexto', 'estadoItem','Criterio_Evaluacion_idCriterio_Evaluacion')
             ->where('estadoItem','=','1')->get();
             $formulario =  DB::table('formulario as f')
                 ->join('visita as v','f.Visita_idVisita','=','v.idVisita')
@@ -66,11 +66,14 @@ class Encabezado1Controller extends Controller
                 ->select('v.fecha', 'p.nombre', 'p.apellidos', 's.nombreSede as sede', 'c.nombreColegio as colegio', 'm.nombreMunicipio as municipio', 's.zona', 's.nivelEscolaridad')
                 ->orderBy('f.idFormulario','desc')
                 ->limit(1)->get();
-
+            $encabezado =  DB::table('encabezado1 as e')
+                ->select('e.visitaNum', 'e.tipoVisita', 'e.simatCuatro', 'e.simatNueve', 'e.simatCatorce', 'e.atendidosCuatro', 'e.atendidosNueve', 'e.atendidosCatorce','e.concepVisitaSanitaria','e.fechaVisitaSanitaria','e.porcentajeVisitaSanitaria')
+                ->orderBy('e.idEncabezado1','desc')
+                ->limit(1)->get();
+            //$maxItem = (int) Item::max('idItem');
             //Hacer consulta de encabezado
-            return view('formulario.index',["criterios"=>$criterios, "items"=>$items, "formulario"=>$formulario]);
+            return view('formulario.index',["criterios"=>$criterios, "items"=>$items, "formulario"=>$formulario, "encabezado"=>$encabezado]);
         }
-
     }
     public function show($idMunicipio)
     {

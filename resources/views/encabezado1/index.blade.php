@@ -2,7 +2,7 @@
 @section ('contenido')
     <div class="row">
             <div class="col-md-12">
-                    <div class="box box-success">
+                    <div class="box box-success box-solid ">
                         <div class="box-header with-border">
                             <h3 class="box-title">Acta de visita programa CREA: Verificacion racion preparada en sitio tipo almuerzo y complemento AM/PM </h3>
                             <div class="box-tools pull-right">

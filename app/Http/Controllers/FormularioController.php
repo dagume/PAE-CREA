@@ -6,7 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use DB;
 use paeCrea\Encabezado1;
-use paeCrea\Formulario;
+use paeCrea\Evaluacion1;
+use paeCrea\Visita;
 
 class FormularioController extends Controller
 {
@@ -24,21 +25,18 @@ class FormularioController extends Controller
     }
     public function store(Request $request)
     {
-        $encabezado1 = new Encabezado1;
-        $encabezado1->visitaNum = $request->get('Visita');
-        $encabezado1->tipoVisita = $request->get('tipoVisita');
-        $encabezado1->simatCuatro = $request->get('simat4');
-        $encabezado1->simatNueve = $request->get('simat9');
-        $encabezado1->simatCatorce = $request->get('simat14');
-        $encabezado1->atendidosCuatro = $request->get('atendidos4');
-        $encabezado1->atendidosNueve = $request->get('atendidos9');
-        $encabezado1->atendidosCatorce = $request->get('atendidos14');
-        $encabezado1->concepVisitaSanitaria = $request->get('Visitasani');
-        $encabezado1->fechaVisitaSanitaria = $request->get('fechaVisita');
-        $encabezado1->porcentajeVisitaSanitaria = $request->get('porcentaje');
-        $encabezado1->Formulario_idFormulario = (int) Formulario::max('idFormulario');
-        $encabezado1->save();
-        return Redirect::to('formulario/create');
+        foreach($request->input('observacion') as $key=>$observacion) {
+            Evaluacion1::create([
+                'evaluacion' => $request->evaluacion[$key],
+                'observacion' => $request->observacion[$key],
+                'manipuladoras' => $request->manipuladoras,
+                'Formulario_idFormulario'=> (int) Encabezado1::max('Formulario_idFormulario'),
+                'Item_idItem'=> $key,
+            ]);
+        Visita::where('idVisita', Encabezado1::max('Formulario_idFormulario'))
+        ->update(['estadoVisita'=>'finalizada']);
+        }
+        return redirect("visita");
     }
     public function show($idMunicipio)
     {

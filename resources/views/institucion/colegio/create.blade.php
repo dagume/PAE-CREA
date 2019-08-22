@@ -23,6 +23,7 @@
         <div class="form-group">
             <label>Municipio</label>
             <select name="Municipio_idMunicipio" class="form-control">
+                    <option  selected disabled>Seleccione Municipio</option>
                 @foreach ($municipios as $mun)
                     <option value="{{$mun->idMunicipio}}">{{$mun->nombreMunicipio}}</option>
                 @endforeach
@@ -31,6 +32,7 @@
         <div class="form-group">
             <label>Asignar Supervisor</label>
             <select name="Persona_idPersona" class="form-control">
+                    <option  selected disabled>Seleccione supervisor</option>
                 @foreach ($personas as $per)
                     <option value="{{$per->idPersona}}">{{$per->nombre}} {{$per->apellidos}}</option>
                 @endforeach
