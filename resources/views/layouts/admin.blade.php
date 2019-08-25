@@ -151,7 +151,7 @@
                 </ul>
               </li>
              <li>
-              <a href="#">
+              <a href="{{url('colegio/export')}}">
                 <i class="fa fa-plus-square"></i> <span>Exportar</span>
                 <small class="label pull-right bg-green">Excel</small>
               </a>

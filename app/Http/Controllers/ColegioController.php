@@ -2,6 +2,8 @@
 
 namespace paeCrea\Http\Controllers;
 
+use paeCrea\Exports\ColegioExport;
+use Maatwebsite\Excel\Facades\Excel;
 use Illuminate\Http\Request;
 use paeCrea\Colegio;
 use Illuminate\Support\Facades\Redirect;
@@ -82,5 +84,9 @@ class ColegioController extends Controller
         $colegio->estadoColegio='0';
         $colegio->update();
         return redirect('institucion/colegio');
+    }
+    public function export()
+    {
+        return Excel::download(new ColegioExport, 'colegios.xlsx');
     }
 }

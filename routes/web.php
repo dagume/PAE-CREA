@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function() {
     Route::resource('formulario', 'FormularioController');
     Route::resource('encabezado1', 'Encabezado1Controller');
     Route::resource('visita', 'VisitaController');
-
+    Route::get('colegio/export/', 'ColegioController@export');
 });
 
 
