@@ -2,6 +2,7 @@
 
 namespace paeCrea\Http\Controllers;
 
+use Caffeinated\Shinobi\Models\Role;
 use Illuminate\Http\Request;
 use paeCrea\User;
 use Illuminate\Support\Facades\Redirect;
@@ -30,20 +31,28 @@ class UserController extends Controller
             return view('usuario.cuenta.index',["usuarios"=>$users,"searchText"=>$query]);
         }
     }
-    public function create()
-    {
-        return view("usuario.cuenta.create");
-    }
+    //public function create()
+    //{
+    //    $usuario =  DB::table('persona as p')
+    //    ->select('p.nombre', 'p.apellidos', 'p.email','p.identificacion')
+    //    ->orderBy('p.idPersona','desc')
+    //    ->limit(1)->get();
+    //    return view("usuario.cuenta.create", ["usuario"=>$usuario]);
+    //}
     public function store(UserFormRequest $request)
     {
+        dd($request);
         $usuario = new User();
         $usuario->name=$request->get('name');
         $usuario->email=$request->get('email');
-        //Arreglar password no lo esta guardando encriptado
         $hashed = Hash::make($request->get('password'));
         $usuario->password= $hashed;
         $usuario->save();
-        return Redirect::to('usuario/cuenta');
+        //$user =  DB::table('users')
+        //->orderBy('user_id','desc')
+        //->limit(1)->get();
+        //$user->assignRoles('supervisor');
+        return Redirect::to('usuario/supervisor');
     }
     public function show($id)
     {

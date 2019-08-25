@@ -4,8 +4,11 @@ namespace paeCrea\Http\Controllers;
 
 use Illuminate\Http\Request;
 use paeCrea\Persona;
+use paeCrea\User;
 use Illuminate\Support\Facades\Redirect;
 use paeCrea\Http\Requests\PersonaFormRequest;
+use paeCrea\Http\Requests\UserFormRequest;
+use Illuminate\Support\Facades\Hash;
 use DB;
 
 class PersonaController extends Controller
@@ -39,8 +42,9 @@ class PersonaController extends Controller
     {
         return view("usuario.supervisor.create");
     }
-    public function store(PersonaFormRequest $request)
+    public function store(PersonaFormRequest $request, UserFormRequest $requestUser)
     {
+        DB::transaction(function () use ($request,$requestUser) {
         $persona = new Persona();
         $persona->nombre=$request->get('nombre');
         $persona->apellidos=$request->get('apellidos');
@@ -51,7 +55,16 @@ class PersonaController extends Controller
         $persona->estadoPersona = '1';
         $persona->tipoUsuario='supervisor';
         $persona->save();
+        $usuario = new User();
+        $usuario->name=$requestUser->get('usuario');
+        $usuario->email=$requestUser->get('email');
+        $hashed = Hash::make($requestUser->get('password'));
+        $usuario->password= $hashed;
+        $usuario->save();
+    },2);
+
         return Redirect::to('usuario/supervisor');
+
     }
     public function show($idPersona)
     {
