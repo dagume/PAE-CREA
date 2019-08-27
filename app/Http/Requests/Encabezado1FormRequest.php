@@ -4,7 +4,7 @@ namespace paeCrea\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class SedeFormRequest extends FormRequest
+class Encabezado1FormRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,14 +24,14 @@ class SedeFormRequest extends FormRequest
     public function rules()
     {
         return [
-            'nombreSede'=>'required|max:100',
-            'nivelEscolariad'=>'max:50',
-            'zona'=>'required|max:100',
-            'escolarizada'=>'required|max:50',
-            'direccion'=>'required|max:100',
-            'telefono'=>'numeric',
-            'correo'=>'max:100',
-            'Colegio_idColegio'=>'required',
+            'simatCuatro'=>'required|numeric',
+            'simatNueve'=>'required|numeric',
+            'simatCatorce'=>'required|numeric',
+            'atendidosCuatro'=>'required|numeric',
+            'atendidosNueve'=>'required|numeric',
+            'atendidosCatorce'=>'required|numeric',
+            'porcentajeVisitaSanitaria'=>'required|numeric',
+
         ];
     }
 }

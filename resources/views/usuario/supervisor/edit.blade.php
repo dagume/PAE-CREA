@@ -27,12 +27,12 @@
 
             <div class="form-group">
                 <label for="email">E-mail</label>
-                <input type="email" name="email" required value="{{$persona->email}}" class="form-control" placeholder="e-mail...">
+                <input type="email" name="email" readonly required value="{{$persona->email}}" class="form-control" placeholder="e-mail...">
             </div>
 
             <div class="form-group">
                 <label for="usuario">Usuario</label>
-                <input type="text" name="usuario" required value="{{$persona->usuario}}" class="form-control" placeholder= "usuario...">
+                <input type="text" name="usuario" readonly required value="{{$persona->usuario}}" class="form-control" placeholder= "usuario...">
             </div>
 
             <div class="form-group">
@@ -46,8 +46,6 @@
             </div>
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="reset" class="btn btn-danger">Cancelar</button>
-
                 </div>
             {!!Form::close()!!}
         </div>

@@ -1,5 +1,19 @@
 @extends ('layouts.admin')
 @section ('contenido')
+<div class="row">
+    <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+        <h3>Nueva Visita</h3>
+        @if (count($errors)>0)
+            <div class="alert alert-danger">
+                <ul>
+                @foreach ($errors->all() as $error)
+                <li>{{$error}}</li>
+                @endforeach
+                </ul>
+            </div>
+        @endif
+    </div>
+</div>
     <div class="row">
             <div class="col-md-12">
                     <div class="box box-success box-solid ">
@@ -92,15 +106,15 @@
 
                                                 <div class="col-xs-12">
                                                     <label >4 - 8 años</label>
-                                                    <input type="text" name="simat4" class="form-control" >
+                                                    <input type="text" name="simatCuatro" class="form-control" >
                                                 </div>
                                                 <div class="col-xs-12">
                                                     <label >9 -13 años</label>
-                                                    <input type="text" name="simat9" class="form-control" >
+                                                    <input type="text" name="simatNueve" class="form-control" >
                                                 </div>
                                                 <div class="col-xs-12">
                                                     <label >14-17 años</label>
-                                                    <input type="text" name="simat14" class="form-control" >
+                                                    <input type="text" name="simatCatorce" class="form-control" >
                                                 </div>
                                             </div>
                             </div>
@@ -111,15 +125,15 @@
                                         <div class="row">
                                             <div class="col-xs-12">
                                                 <label >4 - 8 años</label>
-                                                <input type="text" name="atendidos4" class="form-control" >
+                                                <input type="text" name="atendidosCuatro" class="form-control" >
                                             </div>
                                             <div class="col-xs-12">
                                                 <label >9 -13 años</label>
-                                                <input type="text" name="atendidos9" class="form-control" >
+                                                <input type="text" name="atendidosNueve" class="form-control" >
                                             </div>
                                             <div class="col-xs-12">
                                                 <label >14-17 años</label>
-                                                <input type="text" name="atendidos14" class="form-control" >
+                                                <input type="text" name="atendidosCatorce" class="form-control" >
                                             </div>
                                         </div>
                             </div>
@@ -131,15 +145,15 @@
                                 <div class="form-group">
                                     <label >Concepto emitido</label>
                                         <br>
-                                        <input type="radio" name="Visitasani" checked value="Favorable" > Favorable
+                                        <input type="radio" name="concepVisitaSanitaria" checked value="Favorable" > Favorable
                                         <br>
-                                        <input type="radio" name="Visitasani" value="Favorable con requerimientos" > Favorable con requerimientos
+                                        <input type="radio" name="concepVisitaSanitaria" value="Favorable con requerimientos" > Favorable con requerimientos
                                         <br>
-                                        <input type="radio" name="Visitasani" value="Desfavorable" > Desfavorable
+                                        <input type="radio" name="concepVisitaSanitaria" value="Desfavorable" > Desfavorable
                                         <br>
-                                        <input type="radio" name="Visitasani" value="Sin soporte" > Sin soporte
+                                        <input type="radio" name="concepVisitaSanitaria" value="Sin soporte" > Sin soporte
                                         <br>
-                                        <input type="radio" name="Visitasani" value="Sin visita" > Sin visita
+                                        <input type="radio" name="concepVisitaSanitaria" value="Sin visita" > Sin visita
 
                                 </div>
                             </div>
@@ -150,14 +164,14 @@
                                         <div class = "input-group-addon">
                                             <i class = "fa fa-calendar"></i>
                                         </div>
-                                        <input type="date" class="form-control " name="fechaVisita">
+                                        <input type="date" class="form-control " name="fechaVisitaSanitaria">
                                     </div>
                                 </div>
                             </div>
                             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-6">
                                 <div class="form-group">
                                     <label >Porcentaje</label>
-                                    <input type="number" name="porcentaje" class="form-control">
+                                    <input type="number" name="porcentajeVisitaSanitaria" class="form-control">
                                 </div>
                             </div>
                         </div>

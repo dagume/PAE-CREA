@@ -56,21 +56,14 @@
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                     <label>Tipo de Formulario</label>
-                    <select name="Tipo_Formulario_idTipo_Formulario" readonly class="form-control">
                         @foreach ($tipos_formulario as $tip)
-                            @if ($tip->idTipo_Formulario == $visita->Tipo_Formulario_idTipo_Formulario)
-                                <option value="{{$tip->idTipo_Formulario}}" selected>{{$tip->descripcionFormulario}}</option>
-                            @else
-                                <option value="{{$tip->idTipo_Formulario}}">{{$tip->descripcionFormulario}}</option>
-                            @endif
+                        <input type="text" name="nombre" value="{{$tip->descripcionFormulario}}" readonly class="form-control" >
                         @endforeach
-                    </select>
                 </div>
             </div>
             <div class="col-lg-6 col-sm-6 col-md-6 col-xs-12">
                 <div class="form-group">
                     <button type="submit" class="btn btn-primary">Guardar</button>
-                    <button type="reset" class="btn btn-danger">Cancelar</button>
                 </div>
             </div>
         </div>

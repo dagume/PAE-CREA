@@ -3,11 +3,6 @@
    <div class="row">
        <div class= "col-lg-8 col-md-8 col-sm-8 col-xs-12">
            <h3>Listado de cuentas
-                @can('cuenta.create')
-                <a href="cuenta/create">
-                    <button class="btn btn-success">Nuevo</button>
-                </a>
-                @endcan
             </h3>
            @include('usuario.cuenta.search')
        </div>
@@ -21,9 +16,6 @@
                         <th>Nombre</th>
                         <th>Email</th>
                         <th>Contraseña</th>
-                        @can(['cuenta.edit','cuenta.destroy'])
-                        <th>opciones</th>
-                        @endcan
                     </thead>
                     @foreach ($usuarios as $usu)
                     <tr>
@@ -31,12 +23,8 @@
                         <td>{{ $usu->email}}</td>
                         <td>{{ $usu->password}}</td>
                         <td>
-                        @can('cuenta.edit')
-                        <a href="{{URL::action('UserController@edit',$usu->id)}}"><button class="btn btn-info">Editar</button></a>
-                        @endcan
                         </td>
                     </tr>
-
                     @endforeach
 
                 </table>

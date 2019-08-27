@@ -60,7 +60,6 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="form-group">
                     <button  type="submit" href="cuenta/create" class="btn btn-primary">Guardar</button>
-                    <button type="reset" class="btn btn-danger">Cancelar</button>
                 </div>
             </div>
             {!!Form::close()!!}

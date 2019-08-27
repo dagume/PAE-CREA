@@ -8,6 +8,7 @@ use paeCrea\Encabezado1;
 use paeCrea\Formulario;
 use paeCrea\Criterio_evaluacion;
 use paeCrea\Item;
+use paeCrea\Http\Requests\Encabezado1FormRequest;
 
 class Encabezado1Controller extends Controller
 {
@@ -34,20 +35,20 @@ class Encabezado1Controller extends Controller
     {
 
     }
-    public function store(Request $request)
+    public function store(Encabezado1FormRequest $request)
     {
         $encabezado1 = new Encabezado1;
         $encabezado1->visitaNum = $request->get('Visita');
         $encabezado1->tipoVisita = $request->get('tipoVisita');
-        $encabezado1->simatCuatro = $request->get('simat4');
-        $encabezado1->simatNueve = $request->get('simat9');
-        $encabezado1->simatCatorce = $request->get('simat14');
-        $encabezado1->atendidosCuatro = $request->get('atendidos4');
-        $encabezado1->atendidosNueve = $request->get('atendidos9');
-        $encabezado1->atendidosCatorce = $request->get('atendidos14');
-        $encabezado1->concepVisitaSanitaria = $request->get('Visitasani');
-        $encabezado1->fechaVisitaSanitaria = $request->get('fechaVisita');
-        $encabezado1->porcentajeVisitaSanitaria = $request->get('porcentaje');
+        $encabezado1->simatCuatro = $request->get('simatCuatro');
+        $encabezado1->simatNueve = $request->get('simatNueve');
+        $encabezado1->simatCatorce = $request->get('simatCatorce');
+        $encabezado1->atendidosCuatro = $request->get('atendidosCuatro');
+        $encabezado1->atendidosNueve = $request->get('atendidosNueve');
+        $encabezado1->atendidosCatorce = $request->get('atendidosCatorce');
+        $encabezado1->concepVisitaSanitaria = $request->get('concepVisitaSanitaria');
+        $encabezado1->fechaVisitaSanitaria = $request->get('fechaVisitaSanitaria');
+        $encabezado1->porcentajeVisitaSanitaria = $request->get('porcentajeVisitaSanitaria');
         $encabezado1->Formulario_idFormulario = (int) Formulario::max('idFormulario');
         $encabezado1->save();
         if ($request) {

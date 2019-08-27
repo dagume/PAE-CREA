@@ -22,8 +22,10 @@
                         <th>Nombre</th>
                         <th>Apellidos</th>
                         <th>Email</th>
+                        @can(['supervisor.edit','supervisor.destroy'])
                         <th>Usuario</th>
                         <th>Identidicacion</th>
+                        @endcan
                         <th>Celular</th>
                         @can(['supervisor.edit','supervisor.destroy'])
                         <th>opciones</th>
@@ -35,8 +37,10 @@
                         <td>{{ $per->nombre}}</td>
                         <td>{{ $per->apellidos}}</td>
                         <td>{{ $per->email}}</td>
+                        @can(['supervisor.edit','supervisor.destroy'])
                         <td>{{ $per->usuario}}</td>
                         <td>{{ $per->identificacion}}</td>
+                        @endcan
                         <td>{{ $per->celular}}</td>
                         <td>
                         @can('supervisor.edit')
