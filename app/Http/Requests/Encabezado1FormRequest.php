@@ -24,13 +24,12 @@ class Encabezado1FormRequest extends FormRequest
     public function rules()
     {
         return [
-            'simatCuatro'=>'required|numeric',
-            'simatNueve'=>'required|numeric',
-            'simatCatorce'=>'required|numeric',
-            'atendidosCuatro'=>'required|numeric',
-            'atendidosNueve'=>'required|numeric',
-            'atendidosCatorce'=>'required|numeric',
-            'porcentajeVisitaSanitaria'=>'required|numeric',
+            'simatCuatro'=>'numeric',
+            'simatNueve'=>'numeric',
+            'simatCatorce'=>'numeric',
+            'atendidosCuatro'=>'numeric',
+            'atendidosNueve'=>'numeric',
+            'atendidosCatorce'=>'numeric',
 
         ];
     }

@@ -61,6 +61,7 @@ class PersonaController extends Controller
         $hashed = Hash::make($requestUser->get('password'));
         $usuario->password= $hashed;
         $usuario->save();
+        $usuario->assignRoles('supervisor');
     },2);
 
         return Redirect::to('usuario/supervisor');
